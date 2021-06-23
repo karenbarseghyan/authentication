@@ -16,7 +16,7 @@ const tailLayout = {
   },
 };
 
-const authForm = () => {
+const authFormSignUp = () => {
   const onFinish = (values) => {
     console.log("Success:", values);
   };
@@ -60,7 +60,7 @@ const authForm = () => {
       >
         <Input.Password />
       </Form.Item>
-      
+
       <Form.Item
         label="Re-Enter Your Password"
         name="password"
@@ -87,4 +87,4 @@ const authForm = () => {
   );
 };
 
-export default authForm;
+export default authFormSignUp;

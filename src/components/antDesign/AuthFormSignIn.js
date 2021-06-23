@@ -16,7 +16,7 @@ const tailLayout = {
   },
 };
 
-const authForm = () => {
+const authFormSignIn = () => {
   const onFinish = (values) => {
     console.log("Success:", values);
   };
@@ -74,4 +74,4 @@ const authForm = () => {
   );
 };
 
-export default authForm;
+export default authFormSignIn;
