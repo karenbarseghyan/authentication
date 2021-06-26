@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form{
+    /* position: relative; */
+    width: 300px;
+}
+
+form label {
+    /* position: relative; */
+    display: block;
+}
+
+form input {
+    margin: 8px 0;
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.form__btn {
+    padding: 8px 50px;
+    border-radius: 8px;
+    /* margin-bottom: 2px; */
+}
