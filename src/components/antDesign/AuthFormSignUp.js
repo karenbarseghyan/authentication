@@ -1,5 +1,8 @@
+import React, { useRef, useState } from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 import "antd/dist/antd.css";
+import { useAuth } from "../context/AuthContext";
+
 
 const layout = {
   labelCol: {
@@ -16,7 +19,29 @@ const tailLayout = {
   },
 };
 
-const authFormSignUp = () => {
+const AuthFormSignUp = () => {
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const passwordConfirmRef = useRef();
+  const {signup} = useAuth();
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if(passwordRef.current.value !== passwordConfirmRef.current.value) {
+      return setError("not match")
+    }
+    try{
+      setError("");
+      setLoading(true)
+      await signup(emailRef.current.value, passwordRef.current.value)
+    } catch {
+      setError("failed")
+    }
+    setLoading(false);
+  }
+  
   const onFinish = (values) => {
     console.log("Success:", values);
   };
@@ -25,8 +50,10 @@ const authFormSignUp = () => {
     console.log("Failed:", errorInfo);
   };
 
+  
   return (
-    <Form
+    <Form onSubmit={handleSubmit}
+     
       {...layout}
       name="basic"
       initialValues={{
@@ -37,6 +64,7 @@ const authFormSignUp = () => {
     >
       <Form.Item
         label="Username"
+        ref={emailRef}
         name="username"
         rules={[
           {
@@ -50,7 +78,9 @@ const authFormSignUp = () => {
 
       <Form.Item
         label="Password"
-        name="password"
+        ref={passwordRef}
+        name="password1"
+        id="password1"
         rules={[
           {
             required: true,
@@ -63,7 +93,9 @@ const authFormSignUp = () => {
 
       <Form.Item
         label="Re-Enter Your Password"
-        name="password"
+        ref={passwordConfirmRef}
+        name="password2"
+        id="password2"
         rules={[
           {
             required: true,
@@ -79,7 +111,7 @@ const authFormSignUp = () => {
       </Form.Item>
 
       <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
+        <Button disabled={loading} type="primary" htmlType="submit">
           Submit
         </Button>
       </Form.Item>
@@ -87,4 +119,4 @@ const authFormSignUp = () => {
   );
 };
 
-export default authFormSignUp;
+export default AuthFormSignUp;

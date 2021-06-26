@@ -1,14 +1,27 @@
 import React from 'react'
-import AuthFormSignUp from "../antDesign/AuthFormSignUp";
+// import AuthFormSignUp from "../antDesign/AuthFormSignUp";
 import { Link } from "react-router-dom";
+// import { useAuth } from "../context/AuthContext";
+import AuthSignUp from "../antDesign/AuthFormSignUp";
 
 function SignUp() {
+  console.log(5);
     return (
-      <div>
-        <AuthFormSignUp />
-        <h2 style={{ display: "flex", justifyContent: "center" }}>
-          ALREADY HAVE AN ACCOUNT? <Link to="/signin" style={{marginLeft: '15px'}}> SIGN-IN </Link>
-        </h2>
+      <div
+        style={{
+          // display: "flex",
+          // justifyContent: "center",
+          // alignItems: "center",
+          // flexDirection: "column",
+        }}
+      >
+        <AuthSignUp />
+        <div style={{ fontSize: "20px", textAlign: "center" }}>
+          <span>HAVE AN ACCOUNT?</span>
+          <Link to="/signin" style={{ marginLeft: "15px" }}>
+            SIGN-IN
+          </Link>
+        </div>
       </div>
     );
 }
