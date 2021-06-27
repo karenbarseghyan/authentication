@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { v4 as uuidv4 } from "uuid";
 
 function Dashboard() {
 
@@ -43,7 +44,12 @@ function Dashboard() {
         <p style={{ fontSize: "30px", textAlign: "center" }}>
           Your Dashbord is Right Here
         </p>
-        <button style={{display:"block", margin:"0 auto", width:"10%"}} onClick={showTaskHandler}>{showTask.title}</button>
+        <button
+          style={{ display: "block", margin: "0 auto", width: "10%" }}
+          onClick={showTaskHandler}
+        >
+          {showTask.title}
+        </button>
         {showTask.display && (
           <div>
             <div style={{ textAlign: "center" }}>
@@ -72,7 +78,7 @@ function Dashboard() {
             {taskList !== [] ? (
               <ul>
                 {taskList.map((item) => (
-                  <li>
+                  <li key={uuidv4()}>
                     {item.value}
                     <button onClick={(e) => deleteTask(e, item.id)}>
                       Delete
