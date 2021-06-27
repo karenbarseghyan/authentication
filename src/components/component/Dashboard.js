@@ -45,7 +45,7 @@ function Dashboard() {
           Your Dashbord is Right Here
         </p>
         <button
-          style={{ display: "block", margin: "0 auto", width: "10%" }}
+          style={{ display: "block", margin: "0 auto", width: "150px", height:"50px" }}
           onClick={showTaskHandler}
         >
           {showTask.title}
@@ -55,13 +55,17 @@ function Dashboard() {
             <div style={{ textAlign: "center" }}>
               <input
                 onChange={(e) => handleChange(e)}
-                style={{ padding: "6px", fontSize: "25px" }}
+                style={{
+                  padding: "6px",
+                  fontSize: "25px",
+                  margin: "30px 10px",
+                }}
                 value={task}
                 type="text"
                 name="text"
                 id="text"
                 placeholder="Your text here"
-                size="50"
+                size="40"
               ></input>
               <button
                 style={{
@@ -76,11 +80,11 @@ function Dashboard() {
               </button>
             </div>
             {taskList !== [] ? (
-              <ul>
+              <ul style={{ listStyle: "none", textAlign: "center" }}>
                 {taskList.map((item) => (
-                  <li key={uuidv4()}>
+                  <li key={uuidv4()} style={{ padding: "8px" }}>
                     {item.value}
-                    <button onClick={(e) => deleteTask(e, item.id)}>
+                    <button style={{marginLeft:"10px"}} onClick={(e) => deleteTask(e, item.id)}>
                       Delete
                     </button>
                   </li>
