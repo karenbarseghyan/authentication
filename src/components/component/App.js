@@ -1,5 +1,5 @@
-import SignIn from "./SignIn"
-import SignUp from "./SignUp"
+import SignIn from "./signInUp/SignIn"
+import SignUp from "./signInUp/SignUp"
 import Dashboard from "./Dashboard";
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { AuthProvider } from "../context/AuthContext";

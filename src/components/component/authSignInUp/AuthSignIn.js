@@ -1,30 +1,25 @@
-import React, {useRef} from 'react'
-import './AuthSignUp.css'
-import { useAuth } from "../context/AuthContext";
+import React, { useRef, useState } from "react";
+import "./AuthSignInUp.css";
+import { useAuth } from "../../context/AuthContext";
 
-const AuthFormSignUp = () => {
+const AuthSignIn = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const passwordConfirmRef = useRef();
   const { signup } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-
   async function handleSubmit(e) {
-  e.preventDefault();
-  if(passwordRef.current.value !== passwordConfirmRef.current.value) {
-    return setError("not match")
+    e.preventDefault();
+    try {
+      setError("");
+      setLoading(true);
+      await signup(emailRef.current.value, passwordRef.current.value);
+    } catch {
+      setError("failed");
+    }
+    setLoading(false);
   }
-  try{
-    setError("");
-    setLoading(true)
-    await signup(emailRef.current.value, passwordRef.current.value)
-  } catch {
-    setError("failed")
-  }
-  setLoading(false);
-}
 
   return (
     <div className="wrapper">
@@ -47,16 +42,6 @@ const AuthFormSignUp = () => {
             className="password-box__text"
           />
         </label>
-        <label className="password-box">
-          <input
-            type="password-confirm"
-            ref={passwordConfirmRef}
-            id="password-confirm"
-            placeholder="Password"
-            className="password-box__text"
-            required
-          />
-        </label>
         <button disabled={loading} className="form__btn">
           SUBMIT
         </button>
@@ -65,4 +50,4 @@ const AuthFormSignUp = () => {
   );
 };
 
-export default AuthFormSignUp;
+export default AuthSignIn;
